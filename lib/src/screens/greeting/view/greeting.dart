@@ -1,34 +1,20 @@
-import 'dart:core';
-import 'dart:core';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lab_flutter/src/screens/greeting/cubit/greeting_cubit.dart';
 
-import 'dart:math';
+class GreetingPage extends StatelessWidget {
+  const GreetingPage({Key? key}) : super(key: key);
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomePage(),
+    return BlocProvider<GreetingCubit>(
+      create: (_) => GreetingCubit(),
+      child: _GreetingPage(),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  String greetingText = 'Greetings';
-  String formText = '';
-
+class _GreetingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,16 +30,16 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
-                children: [
+                children: <Widget>[
                   Expanded(
                     flex: 1,
-                    child: TextFormField(
+                    child: TextField(
                       decoration: const InputDecoration(
                         hintText: 'Your name',
                       ),
                       textAlign: TextAlign.center,
                       onChanged: (String text) {
-                        formText = text;
+                        context.read<GreetingCubit>().nameChanged(text);
                       },
                     ),
                   ),
@@ -64,14 +50,7 @@ class _HomePageState extends State<HomePage> {
                     flex: 1,
                     child: ElevatedButton(
                       onPressed: () {
-                        setState(() {
-                          if(formText != '') {
-                            greetingText = 'Hello, $formText';
-                          }
-                          else {
-                            greetingText = 'Greetings';
-                          }
-                        });
+                        context.read<GreetingCubit>().helloButtonPressed();
                       },
                       child: const Text('SAY HELLO'),
                     ),
@@ -82,12 +61,18 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 10,
             ),
-            Text(
-              greetingText,
-              style: TextStyle(
-                fontSize: 20,
-                color: greetingText == 'Greetings' ? Colors.grey : Colors.blueAccent,
-              ),
+            BlocBuilder<GreetingCubit, GreetingState>(
+              buildWhen: (GreetingState previous, GreetingState current) =>
+                  previous.greetingText != current.greetingText,
+              builder: (BuildContext context, GreetingState state) {
+                return Text(
+                  state.greetingText,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: state.greetingText == 'Greetings' ? Colors.grey : Colors.blueAccent,
+                  ),
+                );
+              },
             ),
           ],
         ),
