@@ -2,26 +2,25 @@ import 'dart:core';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lab_flutter/src/lab3/widgets/buttons.dart';
 
-import 'widgets/buttons.dart';
-
-class ActivityA extends StatefulWidget {
-  const ActivityA({Key? key}) : super(key: key);
-
+class ActivityC extends StatefulWidget {
+  const ActivityC({Key? key}) : super(key: key);
 
   @override
-  _ActivityAState createState() {
-    print('CREATE STATE - ACTIVITY A');
-    return _ActivityAState();
+  _ActivityCState createState() {
+    print('CREATE STATE - ACTIVITY C');
+    return _ActivityCState();
   }
+
 }
 
-class _ActivityAState extends State<ActivityA> {
+class _ActivityCState extends State<ActivityC> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('MSA - ACTIVITY A'),
+        title: const Text('MSA - ACTIVITY C'),
         centerTitle: true,
       ),
       body: Padding(

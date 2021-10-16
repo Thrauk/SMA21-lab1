@@ -5,23 +5,22 @@ import 'package:flutter/material.dart';
 
 import 'widgets/buttons.dart';
 
-class ActivityA extends StatefulWidget {
-  const ActivityA({Key? key}) : super(key: key);
-
+class ActivityB extends StatefulWidget {
+  const ActivityB({Key? key}) : super(key: key);
 
   @override
-  _ActivityAState createState() {
-    print('CREATE STATE - ACTIVITY A');
-    return _ActivityAState();
+  _ActivityBState createState() {
+    print('CREATE STATE - ACTIVITY B');
+    return _ActivityBState();
   }
 }
 
-class _ActivityAState extends State<ActivityA> {
+class _ActivityBState extends State<ActivityB> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('MSA - ACTIVITY A'),
+        title: const Text('MSA - ACTIVITY B'),
         centerTitle: true,
       ),
       body: Padding(
