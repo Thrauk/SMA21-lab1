@@ -1,5 +1,16 @@
-import 'src/hello_screen.dart' as app;
+import 'package:flutter/material.dart';
+
+import 'src/hello_screen.dart';
 
 void main() {
-  app.main();
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: HomePage(),
+    );
+  }
 }

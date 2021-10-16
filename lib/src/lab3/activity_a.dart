@@ -8,18 +8,14 @@ import 'package:share/share.dart';
 
 
 
-class HomePage extends StatefulWidget {
+class ActivityA extends StatefulWidget {
+  const ActivityA({Key? key}) : super(key: key);
+
   @override
-  _HomePageState createState() => _HomePageState();
+  _ActivityAState createState() => _ActivityAState();
 }
 
-class _HomePageState extends State<HomePage> {
-  String greetingText = 'Greetings';
-  String formText = '';
-  List<String> colorChoices = ['White', 'Red', 'Black', 'Orange'];
-  List<Color> colorList = [Colors.white, Colors.red, Colors.black, Colors.orange];
-  String activeChoice = 'White';
-  Color buttonColor = Colors.white;
+class _ActivityAState extends State<ActivityA> {
 
   void _launchURL(url) async =>
       await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
@@ -66,8 +62,8 @@ class _HomePageState extends State<HomePage> {
                               context: context,
                               builder: (BuildContext context) =>
                                   PopupWindowWidget(
-                                greetingText: greetingText,
-                              ),
+                                    greetingText: greetingText,
+                                  ),
                             );
                           } else {
                             greetingText = 'Greetings';
@@ -159,41 +155,3 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class PopupWindowWidget extends StatelessWidget {
-  const PopupWindowWidget({Key? key, required this.greetingText})
-      : super(key: key);
-
-  final String greetingText;
-
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      title: const Text('Greeting'),
-      content: Text(greetingText),
-      actions: <Widget>[
-        TextButton(
-          onPressed: () {
-            Navigator.pop(context, 'NEGATIVE');
-            ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(const SnackBar(
-                content: Text("NEGATIVE"),
-              ));
-          },
-          child: const Text('NEGATIVE'),
-        ),
-        TextButton(
-          onPressed: () {
-            Navigator.pop(context, 'POSITIVE');
-            ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(const SnackBar(
-                content: Text("POSITIVE"),
-              ));
-          },
-          child: const Text('POSITIVE'),
-        ),
-      ],
-    );
-  }
-}
