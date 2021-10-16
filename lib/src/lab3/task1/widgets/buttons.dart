@@ -2,7 +2,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lab_flutter/src/lab3/activity.dart';
+
+import '../activity.dart';
 
 
 class ButtonsWidget extends StatelessWidget {

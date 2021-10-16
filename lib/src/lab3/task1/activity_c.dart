@@ -2,7 +2,8 @@ import 'dart:core';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lab_flutter/src/lab3/widgets/buttons.dart';
+
+import 'widgets/buttons.dart';
 
 class ActivityC extends StatefulWidget {
   const ActivityC({Key? key}) : super(key: key);
